@@ -112,6 +112,7 @@ void updateBlock(int i) {
 	char* output = outputs[i];
 	char buffer[LEN(outputs[0]) - CLICKABLE_BLOCKS];
 	int bytesRead = read(pipes[i][0], buffer, LEN(buffer));
+    char insideColor = 0;
 
 	// Trim UTF-8 string to desired length
 	int count = 0, j = 0;
@@ -124,6 +125,18 @@ void updateBlock(int i) {
 		while ((ch & 0xc0) > 0x80)
 			ch <<= 1, skip++;
 		j += skip;
+
+		// Patch required for status2d
+		if (insideColor)
+			count--;
+
+		if (ch == '^' && insideColor) {
+			insideColor = 0;
+		}
+		else if (ch == '^' && !insideColor) {
+			insideColor = 1;
+			count--;
+		}
 	}
 
 	// Cache last character and replace it with a trailing space
