@@ -11,7 +11,7 @@ const Block blocks[] = {
 	// BLOCK("sb-mic",     0,    26),
 	// BLOCK("sb-record",  0,    27),
 	BLOCK("dwm-volume",  0,    22),
-	BLOCK("dwm-bluetooth-headphones", 5,    23),
+	// BLOCK("dwm-bluetooth-headphones", 5,    23),
 	BLOCK("dwm-dunst",  0,    25),
 	BLOCK("dwm-date",    1,    24)
 };
